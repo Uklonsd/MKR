@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Створення списку дійсних чисел
+        List<Double> numbers = new ArrayList<>();
+        numbers.add(16.0);
+        numbers.add(25.0);
+        numbers.add(36.0);
+        numbers.add(49.0);
+
+        // Знаходження квадратного кореня кожного числа за допомогою лямбда-виразу
+        List<Double> squareRoots = findSquareRoots(numbers, Math::sqrt);
+
+        // Виведення результатів
+        System.out.println("Квадратні корені чисел:");
+        for (Double root : squareRoots) {
+            System.out.println(root);
+        }
+    }
+
+    // Метод для знаходження квадратного кореня кожного числа у списку
+    public static List<Double> findSquareRoots(List<Double> numbers, SquareRootOperation operation) {
+        List<Double> result = new ArrayList<>();
+        for (Double number : numbers) {
+            result.add(operation.calculate(number));
+        }
+        return result;
+    }
+}
+
+// Функціональний інтерфейс для операції квадратного кореня
+interface SquareRootOperation {
+    double calculate(double x);
+}
